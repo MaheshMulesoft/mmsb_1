@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<http:listener-config name="HTTP_Listener_config" doc:name="HTTP Listener config" doc:id="0c2757bf-b80e-44e3-9989-233554c9a3f8" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<http:listener-config name="HTTP_Listener_config1" doc:name="HTTP Listener config" doc:id="bd59960d-c45c-4715-89f9-ba06879ea8c4" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	<flow name="maheshvariablesFlow" doc:id="efced99b-a35b-49e8-9571-321ed24aed1f" >
+		<http:listener doc:name="Listener" doc:id="786e5841-7073-49a1-bcc4-a6491dcd8c51" config-ref="HTTP_Listener_config1" path="/variables"/>
+		<logger level="INFO" doc:name="Logger" doc:id="e21ce21e-05de-426c-9c04-5f9f764de32c" message="#[payload]"/>
+		<set-variable value="carrot beatroot" doc:name="Set Variable" doc:id="9f951085-6b3e-4325-982b-4424de08c96a" variableName="vegitables"/>
+		<flow-ref doc:name="Flow Reference" doc:id="d61a1632-11e3-48f2-a5a4-3a90018fdbbc" name="mahivariable_callSub_Flow"/>
+	</flow>
+</mule>
